@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <button @click="title = 'changed'">Update Title</button>
+        <button @click="destroy">Destroy</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data:{
+                title: "Vue instance"
+            },
+            //下述方法直接注册在根下
+            beforeCreate(){
+                console.log("beforeCreated()")
+            },
+            created(){
+                console.log("created()")
+            },
+            beforeMount(){
+                console.log("beforeMount");
+            },
+            mounted(){
+                console.log("mounted");
+            },
+            beforeUpdate(){
+                console.log("beforeUpdate");
+            },
+            updated(){
+                console.log("updated");
+            },
+            beforeDestroy(){
+                console.log("beforeDestroy");
+            },
+            destroyed(){
+                console.log("destroyed");
+            },
+            methods:{
+                destroy(){
+                    this.$destroy();
+                }
+            }
+        })
+    </script>
+</body>
+</html>
