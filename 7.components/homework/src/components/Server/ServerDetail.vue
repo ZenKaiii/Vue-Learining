@@ -1,13 +1,14 @@
 <template>
     <div class="col-xs-12 col-sm-6">
         <p v-if="!server">Server not Selected</p>
-        <p v-else>Server # {{server.id}} selected, Status {{server.status}}</p>
-        <button @click="resetStatus">Change to Normal</button>
+        <p v-else>Server #{{server.id}} selected, Status: {{server.status}}</p>
+        <hr>
+        <button @click="resetStatus">Change To Normal</button>
     </div>
 </template>
 
 <script>
-    import {serverBus} from '../../main.js';
+    import {serverBus} from "../../main";
     export default {
         data(){
             return{
@@ -15,12 +16,12 @@
             }
         },
         methods:{
-          resetStatus(){
-              this.server.status = 'Normal'
-          }
+            resetStatus(){
+                this.server.status = "Normal"
+            }
         },
         created() {
-            serverBus.$on('serverSelected',(server)=>{
+            serverBus.$on("serverSelected",(server)=>{
                 this.server = server
             })
         }

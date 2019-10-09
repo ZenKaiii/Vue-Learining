@@ -7,12 +7,13 @@
 </template>
 
 <script>
-    import {serverBus} from '../../main.js'
+    import {serverBus} from "../../main";
+
     export default {
         props: ['server'],
         methods:{
             serverSelected(){
-                serverBus.$emit('serverSelected', this.server)
+                serverBus.$emit("serverSelected",this.server)
             }
         }
     }
