@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="todo">
+        <form @submit.prevent="addNewTodo">
+            <label for="new-todo"></label>
+            <input
+                    id="new-todo"
+                    v-model="newTodoText">
+            <button>Add</button>
+        </form>
+        <ul>
+            <li is="todo-item"
+                v-for="(todo,index) in todos"
+                :key="todo.id"
+                :title="todo.title"
+                @remove = "todos.splice(index,1)"></li>
+        </ul>
+    </div>
+</body>
+<script>
+    Vue.component('todo-item', {
+        template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">Remove</button>\
+    </li>\
+  ',
+        props: ['title']
+    });
+
+    new Vue({
+        el:"#todo",
+        data:{
+            newTodoText:"",
+            todos:[
+                {
+                    id:1,
+                    title:"coding"
+                }
+            ],
+            nextTodoId:2
+        },
+        methods:{
+            addNewTodo(){
+                this.todos.push({
+                    id: this.nextTodoId ++,
+                    title: this.newTodoText
+                })
+            }
+        }
+    })
+</script>
+</html>
